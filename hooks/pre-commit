@@ -44,7 +44,11 @@ then
       # and the file is a c or cpp file
       if [[ $line == *.c || $line == *.cc || $line == *.h || $line == *.cpp ]]
       then
+        # format the file
         clang-format -i -style=file $(pwd)/${line:3}
+
+        # and then add the file (so that any formatting changes get committed)
+        git add $(pwd)/${line:3}
       fi
     fi
   done
